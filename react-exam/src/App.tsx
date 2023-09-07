@@ -10,7 +10,7 @@ function App() {
       <Route element={<Layout></Layout>}>
         <Route path='/' element={<Navigate to={'./login'}></Navigate>}></Route>
         {routersData.map((route) =>
-          <Route key={route.path} path={route.path} element={route.element}></Route>
+          <Route key={route.path} path={route.path} element={route.element()}></Route>
         )}
       </Route>
     </Routes>
