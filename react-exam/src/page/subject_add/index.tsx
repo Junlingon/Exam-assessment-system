@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './index.module.css';
-import { TreeSelect } from 'antd';
+import { TreeSelect, Button } from 'antd';
 
 function SubjectAdd() {
 
@@ -48,6 +48,7 @@ function SubjectAdd() {
                     onChange={onChange}
                 />
             </div>
+            <Button>新增题目</Button>
         </div>
         <div className={styles.content}>
             <div className={styles.left}>
@@ -61,3 +62,5 @@ function SubjectAdd() {
 }
 
 export default SubjectAdd;
+
+
