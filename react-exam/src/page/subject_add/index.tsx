@@ -1,35 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styles from './index.module.css';
 import { TreeSelect, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_subject_tree_async, select_subject_tree } from '@/store/slice/subject';
+import { get_subject_tree_async, select_subject_tree, select_active_two, set_subject_active_two } from '@/store/slice/subject';
 import { AppDispatch } from '@/store';
 
 function SubjectAdd() {
 
-    const [value, setValue] = useState<string>('');
     const dispatch: AppDispatch = useDispatch();
-
     const treeData = useSelector(select_subject_tree)
-
-    const onChange = (newValue: string) => {
-        console.log(newValue);
-        setValue(newValue);
+    const active_two_obj = useSelector(select_active_two)
+    const onChange = (newValue: string, arr: React.ReactNode[]) => {
+        dispatch(set_subject_active_two({
+            title: arr[0],
+            value: newValue,
+        }))
     };
 
     useEffect(() => {
-        dispatch(get_subject_tree_async())
+        dispatch(get_subject_tree_async()).then((res) => {
+            const selectSub = res.payload[0].children[0];
+            dispatch(set_subject_active_two(selectSub))
+        })
     }, []);
 
     return <div className={styles.wrap}>
         <div className={styles.top}>
             <div className={styles.top_left}>
-                基础网络
+                {active_two_obj.title}
             </div>
             <div className={styles.top_right}>
                 <TreeSelect
                     style={{ width: '100%' }}
-                    value={value}
+                    value={active_two_obj.value}
                     dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
                     treeData={treeData}
                     placeholder="Please select"

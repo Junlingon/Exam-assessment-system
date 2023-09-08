@@ -5,7 +5,10 @@ import { RootState } from '../index'
 //state
 const initialState = {
 	subject_tree: [],
-	active_two: null,
+	active_two: {
+		title: '',//二级课程名称
+		value: '',//二级课程id
+	},
 }
 
 //action
@@ -18,9 +21,11 @@ export const subjectSlice = createSlice({
 	name: 'subject',
 	initialState,
 	reducers: {
-
+		set_subject_active_two: (state, action) => {
+			state.active_two = action.payload
+		},
 	},
-	//reducers
+	//异步reducers
 	extraReducers: (builder) => {
 		builder.addCase(get_subject_tree_async.fulfilled, (state, res) => {
 			state.subject_tree = res.payload
@@ -32,5 +37,10 @@ export const subjectSlice = createSlice({
 export const select_subject_tree = (state: RootState) => {
 	return state.subject.subject_tree
 }
+// 获取当前选择课程
+export const select_active_two = (state: RootState) => {
+	return state.subject.active_two
+}
 
+export const { set_subject_active_two } = subjectSlice.actions
 export default subjectSlice.reducer
