@@ -1,36 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './index.module.css';
 import { TreeSelect, Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { get_subject_tree_async, select_subject_tree } from '@/store/slice/subject';
+import { AppDispatch } from '@/store';
 
 function SubjectAdd() {
 
     const [value, setValue] = useState<string>('');
+    const dispatch: AppDispatch = useDispatch();
 
-    const treeData = [
-        {
-            title: 'Node1',
-            value: '0-0',
-            children: [
-                {
-                    title: 'Child Node1',
-                    value: '0-0-1',
-                },
-                {
-                    title: 'Child Node2',
-                    value: '0-0-2',
-                },
-            ],
-        },
-        {
-            title: 'Node2',
-            value: '0-1',
-        },
-    ];
+    const treeData = useSelector(select_subject_tree)
 
     const onChange = (newValue: string) => {
         console.log(newValue);
         setValue(newValue);
     };
+
+    useEffect(() => {
+        dispatch(get_subject_tree_async())
+    }, []);
 
     return <div className={styles.wrap}>
         <div className={styles.top}>
