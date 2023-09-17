@@ -3,18 +3,16 @@ import logo from './assets/logo.png'
 import avatar from './assets/avatar.png'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, Badge, Typography, Dropdown, List, Popover, Button, message } from 'antd'
-// import { useAppDispatch, useAppSelector } from '@/store'
-// import { logout, select_user_info } from '@/store/slice/role'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { logout, select_user_info } from '@/store/slice/role'
 
 const { Text } = Typography
 
 export default function Header() {
 	const navigate = useNavigate()
 
-	const userInfo = {
-		name: '龚俊霖',
-		avatar: 'http://'
-	}
+	const userInfo = useAppSelector(select_user_info)
+	const dispatch = useAppDispatch()
 
 	return (
 		<div className={styles.wrap}>
@@ -73,7 +71,7 @@ export default function Header() {
 											style={{ color: 'unset' }}
 											type="link"
 											onClick={() => {
-												// dispatch(logout(null))
+												dispatch(logout(null))
 												navigate('/login')
 												message.success('退出成功')
 											}}
