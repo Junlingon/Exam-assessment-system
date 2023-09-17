@@ -1,7 +1,6 @@
-// import { pick } from '@/util';
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '../index';
-export type Role = 'student' | 'admin' | 'super_admin';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { RootState } from '../index'
+export type Role = 'student' | 'admin' | 'super_admin'
 
 interface BaseInfo {
 	role: Role
@@ -67,22 +66,22 @@ export const roleSlice = createSlice({
 			state.role = aciton.payload.role
 		},
 		logout(state, aciton) {
-			console.log('logout');
+			console.log('logout')
 
-			localStorage.clear();
-			state = getUserInfo<RoleState>();
+			localStorage.clear()
+			state = getUserInfo<RoleState>()
 		},
 	},
 })
 
-// export const select_role = (state: RootState) => {
-// 	return state.role.role;
-// }
+export const select_role = (state: RootState) => {
+	return state.role.role
+}
 
-// export const select_user_info = (state: RootState) => {
-// 	return state.role;
-// }
+export const select_user_info = (state: RootState) => {
+	return state.role
+}
 
-export const { set_role, logout } = roleSlice.actions;
+export const { set_role, logout } = roleSlice.actions
 
-export default roleSlice.reducer;
+export default roleSlice.reducer

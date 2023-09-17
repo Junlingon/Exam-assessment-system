@@ -172,7 +172,7 @@ function PersonInfo() {
                         <div className='btn-container'>
                             {!has_person_info ? (
                                 <Button type='primary' htmlType='submit' className='btn goto_exam'>
-                                    前往考试
+                                    保存信息
                                 </Button>
                             ) : (
                                 <>
