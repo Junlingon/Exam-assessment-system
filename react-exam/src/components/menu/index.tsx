@@ -9,7 +9,7 @@ const items: MenuProps['items'] = superAdminMenus;
 
 const App: React.FC = () => {
     const Navigate = useNavigate();
-    const [current, setCurrent] = useState('mail');
+    const [current, setCurrent] = useState('subject_add');
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);

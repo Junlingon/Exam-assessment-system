@@ -36,7 +36,7 @@ function SubjectAdd() {
     const lessonList = useAppSelector(select_subject_tree)
     // 学科列表memo 使父级不能选择
     const lessonListMemo = useMemo(() => {
-        return lessonList.length ? disableHasChildrenItem(lessonList) : []
+        return lessonList?.length ? disableHasChildrenItem(lessonList) : []
     }, [lessonList])
     // 当前学科
     const currentlesson = useAppSelector(select_active_two)
