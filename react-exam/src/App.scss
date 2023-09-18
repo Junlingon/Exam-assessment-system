@@ -4,8 +4,28 @@
         background: aliceblue;
     }
 
-    .nav_wrap {}
+    .nav_wrap {
+        $padding: 60px;
+        padding-left: $padding;
+        padding-right: $padding;
+        background-color: #fff;
+        border-radius: 8px 8px 0 0;
 
-    .outlet_wrap {}
+        .ant-tabs-nav::before {
+            margin: 0 ($padding * -1);
+        }
+    }
+
+    .content_wrap {
+        padding-left: 50px;
+        padding-right: 50px;
+
+        .outlet_wrap {
+            height: 100%;
+        }
+
+        padding: 20px 120px;
+        background: #f2f4f7;
+    }
 
 }
