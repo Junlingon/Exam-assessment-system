@@ -149,3 +149,12 @@ export const superAdminMenus: MenuProps[] = [
         key: 'admin_manage',
     },
 ]
+
+export const examSelectMenus = [{
+    label: "开始考试",
+    key: "exam_select",
+},
+{
+    label: "考试记录",
+    key: "exam_history",
+},]
