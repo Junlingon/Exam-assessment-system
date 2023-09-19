@@ -1,5 +1,6 @@
+import ListTable from "@/components/ListTable";
 function AdminManage() {
-    return <h1>admin_manage</h1>
+    return <ListTable />
 }
 
-export default AdminManage;
+export default AdminManage
