@@ -1,8 +1,8 @@
 import { Modal, Form, Select, Input, message } from "antd";
 import { useState, useEffect } from "react";
-import axios from "@/util/http";
+import axios from "@/utils/https";
 import styles from "./course.module.scss";
-import { subjectAddPost } from '../../../util/request';
+import { subjectAddPost } from '@/utils/request';
 
 interface CourseAddProps {
   children: React.ReactElement;
@@ -18,7 +18,7 @@ type Course = {
 /**
  * @author 埃万
  */
-export default function CourseAdd (props: CourseAddProps) {
+export default function CourseAdd(props: CourseAddProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
