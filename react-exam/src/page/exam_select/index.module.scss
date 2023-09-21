@@ -1,41 +1,39 @@
-.wrap {
+
+.wrap{
     background-color: #FFFFFF;
     /* margin-top: 20px; */
     border-radius: 8px;
 
-    .menu {
+    .menu{
         height: 48px;
         padding-left: 46px;
         border-radius: 8px 8px 0 0;
-
+       
     }
-
-    .content {
+    .content{
         padding: 20px 32px 0;
-        height: calc(100vh - 254px);
+        min-height: calc(100vh - 300px);
         overflow-y: auto;
         border-bottom: 1px solid #D8D8D8;
 
-        .title {
+        .title{
             display: flex;
             align-items: center;
             margin-bottom: 20px;
-
-            & img {
+            & img{
                 margin-right: 20px;
                 object-fit: cover;
             }
         }
-
-        .topic_section {
+        .topic_section{
             display: flex;
             flex-wrap: wrap;
-
-            .topic_section_content {
+           
+            .topic_section_content{
                 width: 266px;
                 height: 40px;
                 border: 1px solid transparent;
-                background-color: #F5F6F7;
+                background-color: #a6c8be;
                 border-radius: 4px;
                 font-size: 14px;
                 font-weight: 400;
@@ -49,33 +47,31 @@
                 cursor: pointer;
             }
         }
-
+        
     }
-
-    .footer {
+   
+    .footer{
         height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
-
-        & button {
+        & button{
             width: 320px;
             height: 40px;
             border: 1px solid transparent;
             border-radius: 4px;
             background-color: #1880FF;
             color: #F2F4F7;
-            cursor: pointer;
         }
     }
 
     :global {
-        .ant-menu-item {
+        .ant-menu-item{
             padding: 0 !important;
             margin-right: 60px !important;
         }
 
-        .ant-menu-light.ant-menu-horizontal>.ant-menu-item::after {
+        .ant-menu-light.ant-menu-horizontal >.ant-menu-item::after {
             content: '';
             // display: block;
             width: 100%;
@@ -83,38 +79,39 @@
             position: absolute;
             left: 0;
             bottom: 0;
-        }
-
-        /* 修改滚动条的宽度和颜色 */
+          }
+          /* 修改滚动条的宽度和颜色 */
         ::-webkit-scrollbar {
             width: 8px;
             background-color: #FFFFFF;
         }
-
+    
         /* 修改滚动条的滑块样式 */
         ::-webkit-scrollbar-thumb {
             background-color: #9FA3A7;
             border-radius: 4px;
             width: 8px;
         }
-
+    
         /* 修改滚动条的滑块悬停样式 */
-        //      ::-webkit-scrollbar-thumb:hover {
-        //      background-color: #9FA3A7;
-        //   }
-
-        .topic_section_content_selected {
+    //      ::-webkit-scrollbar-thumb:hover {
+    //      background-color: #9FA3A7;
+    //   }
+      
+        .topic_section_content_selected{
             background: url('./assets/class_acitveclass_acitve.png') no-repeat;
             background-position: right bottom;
             color: #1880FF !important;
             border: 1px solid #1880FF !important;
         }
 
-        .topic_section_content_disabled {
-            opacity: 0.5;
+        .topic_section_content_disabled{
+            opacity: 0.4;
             cursor: not-allowed !important;
         }
-
+        
     }
-
+    
 }
+
+

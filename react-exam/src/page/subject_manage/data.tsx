@@ -1,4 +1,6 @@
-import { Modal } from "antd";
+import { Modal, message } from "antd";
+import axios from "@/utils/https";
+import { MESSAGE_DELETE_EERROR } from "./constant";
 import { subject2Delete } from '@/utils/request';
 
 /** 课程 */
