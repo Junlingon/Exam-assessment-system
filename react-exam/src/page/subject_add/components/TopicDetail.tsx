@@ -1,29 +1,34 @@
 import { Button, Form, Input, message } from 'antd';
 import { UploadChangeParam, UploadFile, UploadProps } from 'antd/es/upload';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { upload_imgs } from '@/utils';
 import request from '@/utils/https';
-import { get_topic_two_list, select_active_topic, select_active_two, TopicType, set_subject_active_two, set_subject_active_topic } from '@/store/slice/subject';
-import CustomUpload from './Upload';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { get_topic_two_list, select_active_topic, select_active_two, set_subject_active_two, set_subject_active_topic } from '@/store/slice/subject'
+import CustomUpload from '@/components/Upload';
+import { useAppDispatch, useAppSelector } from '@/store'
 
 export default function TopicDetail() {
 	const [loading, setLoading] = useState(false)
+	const [fileList, setFileList] = useState<UploadFile[]>([])
+
 
 	const currentlesson = useAppSelector(select_active_two)
 
 	const currentTopic = useAppSelector(select_active_topic)
 
-	const dispatch = useAppDispatch()
 
+	const dispatch = useAppDispatch()
 	const [form] = Form.useForm()
 
-	// 重置表单
-	const reset = () => {
-		form.resetFields()
-		setFileList([])
-	}
 
+
+	// 组件卸载时把当前选择的数据删除
+	useEffect(() => {
+		return () => {
+			dispatch(set_subject_active_two(null))
+			dispatch(set_subject_active_topic(null))
+		}
+	}, [])
 	useEffect(() => {
 		if (!currentTopic) {
 			reset()
@@ -47,13 +52,17 @@ export default function TopicDetail() {
 		}
 	}, [currentTopic?._id])
 
-	const [fileList, setFileList] = useState<UploadFile[]>([])
 
+
+	// 重置表单
+	const reset = () => {
+		form.resetFields()
+		setFileList([])
+	}
 	const handleImgChange: UploadProps['onChange'] = async (fileInfo: UploadChangeParam) => {
 		setFileList(fileInfo.fileList.map((item) => ({ ...item, status: 'done' })))
 	}
-
-	const submit = async (data: TopicType) => {
+	const submit = async (data: any) => {
 		setLoading(true)
 
 		if (fileList.length) {
@@ -68,7 +77,7 @@ export default function TopicDetail() {
 		}
 
 		try {
-			// 编辑时 todo：等待接口完善
+			// 编辑时 todo：
 			if (currentTopic) {
 				// 提交数据
 				await request.patch(`/api/topic/${currentTopic._id}`, {
@@ -92,23 +101,15 @@ export default function TopicDetail() {
 		}
 	}
 
-	// 组件卸载时把当前选择的数据删除
-	useEffect(() => {
-		return () => {
-			dispatch(set_subject_active_two(null))
-			dispatch(set_subject_active_topic(null))
-		}
-	}, [])
-
 	return (
 		<Form form={form} autoComplete="off" name="subject-detail-form" labelCol={{ span: 2 }} scrollToFirstError onFinish={submit}>
-			<Form.Item<TopicType> label="题干" name="title" rules={[{ required: true, message: '题干必填' }]}>
+			<Form.Item label="题干" name="title" rules={[{ required: true, message: '题干必填' }]}>
 				<Input />
 			</Form.Item>
-			<Form.Item<TopicType> label="描述" name="dec">
+			<Form.Item label="描述" name="dec">
 				<Input.TextArea />
 			</Form.Item>
-			<Form.Item<TopicType> label="图片" name="img">
+			<Form.Item label="图片" name="img">
 				<CustomUpload
 					fileList={fileList}
 					uploadProps={{

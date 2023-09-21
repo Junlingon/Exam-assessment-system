@@ -1,19 +1,41 @@
-import { Button, Empty, List, message, Popconfirm, Spin } from 'antd';
-import classNames from 'classnames';
-import { select_topic_two_list, select_active_two, get_topic_two_list, select_subject_loading, set_subject_active_topic, select_active_topic } from '@/store/slice/subject';
-import request from '@/utils/https';
-import { useAppDispatch, useAppSelector } from '@/store';
+import { Button, Empty, List, message, Popconfirm, Spin } from 'antd'
+import classNames from 'classnames'
+import { select_topic_two_list, select_active_two, get_topic_two_list, select_subject_loading, set_subject_active_topic, select_active_topic } from '@/store/slice/subject'
+import request from '@/utils/https'
+import { useAppDispatch, useAppSelector } from '@/store'
+import useRenderCheck from '@/hooks/renderCheck';
+import TestMemo from './TestMemo'
+import { useCallback, useDeferredValue } from 'react'
+import TestRenderList from './TestRenderList';
+
 
 export default function TopicList() {
-	const list = useAppSelector(select_topic_two_list)
+
+	let list = useAppSelector(select_topic_two_list)
+
+	// 伪造数据
+	// for(let i = 0; i < 7; i ++) {
+	// 	list = list.concat(list.map((item: any) => {
+	// 		return {
+	// 			...item,
+	// 			_id: Math.random()
+	// 		}
+	// 	}))
+	// }
+
+	// const deffer_list = useDeferredValue(list);
+
 
 	const loading = useAppSelector(select_subject_loading)
 
+	// 还要优化空间
 	const currentlesson = useAppSelector(select_active_two)
 
 	const currentTopic = useAppSelector(select_active_topic)
 
 	const dispatch = useAppDispatch()
+
+	useRenderCheck('TopicList')
 
 	// 删除题目
 	const deleteTopic = async (id: string) => {
@@ -33,8 +55,15 @@ export default function TopicList() {
 		}
 	}
 
+	function testClick() { }
+
+	// 同理，useMemo
+	const memoCb = useCallback(testClick, [])
+
 	return (
 		<Spin spinning={loading}>
+			{/* <TestMemo handleClick={memoCb} /> */}
+			{/* <TestRenderList list={list} /> */}
 			{list.length ? (
 				<List
 					split={false}
