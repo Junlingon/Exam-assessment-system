@@ -1,5 +1,5 @@
 import useRenderCheck from '@/hooks/renderCheck';
-import React from 'react'
+import React from 'react';
 
 function TestMemo(props: any) {
 

@@ -1,4 +1,4 @@
-function TestItem (props: any) {
+function TestItem(props: any) {
     return (
         <div>
             <p>{props.title}</p>
@@ -12,8 +12,8 @@ function TestItem (props: any) {
             <p>{props.title}</p>
             <video src="adasd"></video>
         </div>
-        
-    ) 
+
+    )
 }
 
-export default TestItem
+export default TestItem;

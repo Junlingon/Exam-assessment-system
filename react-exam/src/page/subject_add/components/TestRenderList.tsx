@@ -1,4 +1,4 @@
-import TestItem from "./TestItem"
+import TestItem from "./TestItem";
 
 function TestRenderList(props: any) {
     const list = props.list
@@ -7,10 +7,6 @@ function TestRenderList(props: any) {
         <div>
             {
                 list.map((element: any) => {
-                    // let i = 0
-                    // while(i < 10000000) {
-                    //     i++
-                    // }
                     return <TestItem key={element._id} title={element.title} />
                 })
             }

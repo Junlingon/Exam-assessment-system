@@ -5,7 +5,7 @@ import { upload_imgs } from '@/utils';
 import request from '@/utils/https';
 import { get_topic_two_list, select_active_topic, select_active_two, set_subject_active_two, set_subject_active_topic } from '@/store/slice/subject'
 import CustomUpload from '@/components/Upload';
-import { useAppDispatch, useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store';
 
 export default function TopicDetail() {
 	const [loading, setLoading] = useState(false)

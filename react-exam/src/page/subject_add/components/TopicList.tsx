@@ -1,12 +1,10 @@
-import { Button, Empty, List, message, Popconfirm, Spin } from 'antd'
-import classNames from 'classnames'
-import { select_topic_two_list, select_active_two, get_topic_two_list, select_subject_loading, set_subject_active_topic, select_active_topic } from '@/store/slice/subject'
-import request from '@/utils/https'
-import { useAppDispatch, useAppSelector } from '@/store'
+import { Button, Empty, List, message, Popconfirm, Spin } from 'antd';
+import classNames from 'classnames';
+import { select_topic_two_list, select_active_two, get_topic_two_list, select_subject_loading, set_subject_active_topic, select_active_topic } from '@/store/slice/subject';
+import request from '@/utils/https';
+import { useAppDispatch, useAppSelector } from '@/store';
 import useRenderCheck from '@/hooks/renderCheck';
-import TestMemo from './TestMemo'
-import { useCallback, useDeferredValue } from 'react'
-import TestRenderList from './TestRenderList';
+import { useCallback } from 'react';
 
 
 export default function TopicList() {
