@@ -1,31 +1,24 @@
 .layout {
-    .header_wrap {
+    .header_wrap{
         height: 80px;
-        background: aliceblue;
+        // background: #ccc;
     }
 
     .nav_wrap {
-        $padding: 60px;
-        padding-left: $padding;
-        padding-right: $padding;
-        background-color: #fff;
-        border-radius: 8px 8px 0 0;
-
-        .ant-tabs-nav::before {
-            margin: 0 ($padding * -1);
-        }
+        margin-bottom: 10px;
     }
 
-    .content_wrap {
-        padding-left: 50px;
-        padding-right: 50px;
-
-        .outlet_wrap {
-            height: 100%;
-        }
-
-        padding: 20px 120px;
-        background: #f2f4f7;
+    .outlet_wrap{
+        background: rgb(237, 236, 236);
+        padding: 30px;
+        min-height: calc(100vh - 150px);
     }
+}
 
+.hide {
+    display: none;
+}
+
+.ant-menu-light {
+    border-radius: 5px;
 }

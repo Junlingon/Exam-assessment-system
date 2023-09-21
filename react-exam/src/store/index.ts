@@ -9,17 +9,17 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<
-	ReturnType,
-	RootState,
-	unknown,
-	Action<string>
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
 >;
 
 export const store = configureStore({
-	reducer: {
-		subject: subjectReducer,
-		user: userReducer
-	},
+  reducer: {
+    subject: subjectReducer,
+    user:userReducer
+  },
 });
 
 // 只是加上了类型定义

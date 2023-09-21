@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState } from '../index'
-import { getSubjectTree, getTopic2List, SubjectData, TopicData, getExamHistory, ExamData, getExamByIdRequest, ResData, getSubejctOne } from '../../utils/request';
+import { getSubjectTree, getTopic2List, SubjectData, TopicData, getExamHistory, ExamData, getExamByIdRequest, ResData, getSubejctOne } from '../../util/request';
 
 // 题库仓库state类型
 type SubjectState = {

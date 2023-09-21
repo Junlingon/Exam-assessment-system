@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState } from '../index'
-import { getUserInfoRequest, UserInfo, getMenuRequest, getStudentListRequest, getAdminListRequest, MenuData } from '@/utils/request';
+import { getUserInfoRequest, UserInfo, getMenuRequest, getStudentListRequest, getAdminListRequest, MenuData } from '@/util/request';
 
 export type PageList<T = any> = {
     list: T[],
@@ -97,10 +97,10 @@ export const userSlice = createSlice({
             .addCase(get_student_async.fulfilled, (state, res) => {
                 // state.student_list = res.payload.data
                 // state.student_list_count = res.payload.count
-
+                
                 state.student_list_data.list = res.payload.data
                 state.student_list_data.count = res.payload.count
-
+                
             })
             .addCase(get_admin_async.fulfilled, (state, res) => {
                 state.admin_list = res.payload
@@ -136,7 +136,7 @@ export const select_student_list_search_params = (state: RootState) => {
     return state.user.student_list_search_params
 }
 
-export const select_student_list_current_page = (state: RootState) => {
+export const select_student_list_current_page =(state: RootState) => {
     return state.user.student_list_current_page
 }
 
