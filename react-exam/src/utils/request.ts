@@ -1,4 +1,4 @@
-import axios from './https';
+import axios from './https'
 
 type AxiosRes<T = ResData> = {
     config: Object,

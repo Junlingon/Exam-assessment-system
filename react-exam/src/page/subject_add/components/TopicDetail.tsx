@@ -36,7 +36,7 @@ export default function TopicDetail() {
 			form.setFieldsValue(currentTopic)
 			if (currentTopic.img?.length) {
 				setFileList(
-					currentTopic.img.map((url) => {
+					currentTopic.img.map((url: any) => {
 						const fileName = url.split('/').at(-1)!
 						return {
 							uid: fileName,

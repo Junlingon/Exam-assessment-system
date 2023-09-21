@@ -1,160 +1,94 @@
-import React from 'react';
-import Login from '@/page/login';
-import AdminManage from '@/page/admin_manage';
-import CorrectExam from '@/page/correct_exam';
-import CorrectExamList from '@/page/correct_exam_list';
-import Exam from '@/page/exam';
-import ExamHistory from '@/page/exam_history';
-import ExamSelect from '@/page/exam_select';
-import PersonInfo from '@/page/person_info';
-import ReadExam from '@/page/read_exam';
-import StudentManage from '@/page/student_manage';
-import SubjectAdd from '@/page/subject_add';
-import SubjectManage from '@/page/subject_manage';
+type RouterDataType = typeof routersData
+export type RouterKeys = keyof RouterDataType
 
-type routersDataProps = {
-    name: string,
-    path: string,
-    hasMenu: boolean,
-    element: Function
-};
-export const routersData: routersDataProps[] = [
-    {
-        name: 'login',
+
+export const routersData = {
+    login: { // 页面1  登录
         path: '/login',
         hasMenu: false,
-        element: Login
     },
-    {
-        name: 'admin_manage',
-        path: '/admin_manage',  //管理员
+    admin_manage: { //页面12： 管理员管理 （超级管理员）
+        path: '/admin_manage',
         hasMenu: true,
-        element: AdminManage
     },
-    {
-        name: 'correct_exam',
-        path: '/correct_exam/:exam_id',
+    corret_exam: { // 页面8： 批改试卷（管理员）
+        path: '/corret_exam/:exam_id',
         hasMenu: true,
-        element: CorrectExam
     },
-    {
-        name: 'correct_exam_list',
-        path: '/correct_exam_list',
+    corret_exam_list: { // 页面7： 批阅试卷列表（管理员）
+        path: '/corret_exam_list',
         hasMenu: false,
-        element: CorrectExamList
     },
-    {
-        name: 'exam',
+    exam: { // 页面4： 考试 (学生)
         path: '/exam/:exam_id',
         hasMenu: true,
-        element: Exam
     },
-    {
-        name: 'exam_history',
+    exam_history: { //页面5： 学生考试记录 （学生）
         path: '/exam_history',
         hasMenu: true,
-        element: ExamHistory
     },
-    {
-        name: 'exam_select',
+    exam_select: {// 页面3： 考题选择 （学生）
         path: '/exam_select',
         hasMenu: true,
-        element: ExamSelect
     },
-    {
-        name: 'person_info',
+    person_info: { // 页面2： 个人信息录入（学生 管理员）
         path: '/person_info',
         hasMenu: false,
-        element: PersonInfo
     },
-    {
-        name: 'read_exam',
+    read_exam: {// 页面6 查看试卷（学生 管理员）
         path: '/read_exam/:exam_id',
         hasMenu: true,
-        element: ReadExam
     },
-    {
-        name: 'student_manage',
+    student_manage: { //页面9： 学生管理(管理员)
         path: '/student_manage',
         hasMenu: true,
-        element: StudentManage
     },
-    {
-        name: 'subject_add',
+    subject_add: {// 页面11： 考题录入（管理员）
         path: '/subject_add',
         hasMenu: true,
-        element: SubjectAdd
     },
-    {
-        name: 'subject_manage',
+    subject_manage: {// 页面10： 课程管理 （管理员）
         path: '/subject_manage',
         hasMenu: true,
-        element: SubjectManage
     },
-]
+}
 
-type MenuProps = {
-    label: string,
-    key: string,
-};
-export const studentMenus: MenuProps[] = [
-    {
-        label: '考题选择',
-        key: 'exam_select',
-    },
-    {
-        label: "考试记录",
-        key: 'exam_history',
-    },
-]
 
-export const adminMenus: MenuProps[] = [
-    {
-        label: '阅卷列表',
-        key: 'correct_exam_list',
-    },
-    {
-        label: "考题管理",
-        key: 'subject_add',
-    },
-    {
-        label: "课程管理",
-        key: 'subject_manage',
-    },
-    {
-        label: "学员管理",
-        key: 'student_manage',
-    },
-]
+export const studentMenus = [{
+    label: '考题选择',
+    key: 'exam_select',
+}, {
+    label: '考试记录',
+    key: 'exam_history',
+}]
 
-export const superAdminMenus: MenuProps[] = [
-    {
-        label: '阅卷列表',
-        key: 'correct_exam_list',
-    },
-    {
-        label: "考题管理",
-        key: 'subject_add',
-    },
-    {
-        label: "课程管理",
-        key: 'subject_manage',
-    },
-    {
-        label: "学员管理",
-        key: 'student_manage',
-    },
-    {
-        label: "管理员管理",
-        key: 'admin_manage',
-    },
-]
+export const adminMenus = [{
+    label: '阅卷列表',
+    key: 'corret_exam_list',
+}, {
+    label: '考题管理',
+    key: 'subject_add',
+}, {
+    label: '课程管理',
+    key: 'subject_manage',
+}, {
+    label: '学员管理',
+    key: 'student_manage',
+}]
 
-export const examSelectMenus = [{
-    label: "开始考试",
-    key: "exam_select",
-},
-{
-    label: "考试记录",
-    key: "exam_history",
-},]
+export const superAdminMenus = [{
+    label: '阅卷列表',
+    key: 'corret_exam_list',
+}, {
+    label: '考题管理',
+    key: 'subject_add',
+}, {
+    label: '课程管理',
+    key: 'subject_manage',
+}, {
+    label: '学员管理',
+    key: 'student_manage',
+}, {
+    label: '管理员管理',
+    key: 'admin_manage',
+}]
