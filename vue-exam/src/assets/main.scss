@@ -1,0 +1,26 @@
+@import './base.css';
+
+
+.app {
+    // padding: 20px;
+}
+
+.header_layout {
+    // background: #ccc;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.content_wrap {
+    background: rgb(215, 213, 213);
+    padding: 20px;
+    min-height: calc(100vh - 90px);
+}
+
+.page_wrap {
+    background: #fff;
+    padding: 20px;
+    min-height: calc(100vh - 220px);
+    margin-top: 20px;
+    border-radius: 10px;
+}
