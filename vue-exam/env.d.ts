@@ -4,7 +4,7 @@
 
 // 简单版本
 // declare module '*.vue'
- 
+
 // 推荐使用
 declare module '*.vue' {
     // 引入vue模块中ts的方法
@@ -14,4 +14,4 @@ declare module '*.vue' {
     export default component
 }
 
-
+declare module 'vue-router' 
