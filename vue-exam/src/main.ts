@@ -7,7 +7,7 @@ import ElementPlus from 'element-plus'
 
 // import 'element-plus/dist/index.css'
 // 全局样式
-import './assets/main.css'
+import './assets/main.scss'
 import Colada, { PiniaColadaPlugin } from 'colada-plugin';
 
 const app = createApp(App)
