@@ -13,7 +13,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    corret exam
+    exam history
   </div>
 </template>
 
