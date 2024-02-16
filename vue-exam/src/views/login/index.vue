@@ -12,9 +12,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    login
+  <div class="wrap">
+    <h1>hello login</h1>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.wrap {
+  color: red;
+
+  h1 {
+    color: blue;
+  }
+}
+</style>

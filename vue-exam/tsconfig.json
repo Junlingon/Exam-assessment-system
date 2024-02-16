@@ -1,36 +1,45 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
+  // 引入vue的默认ts配置
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  // ts需要编译的内容区域
   "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "@types/lodash-es",
+    "@types/events"
   ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
+  "compilerOptions": {
+    // 内置类型包
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "baseUrl": ".",
+    // 配合vite的别名
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@http": [
+        "./src/http"
+      ],
+      "@components": [
+        "./src/components"
+      ],
+    },
+    // element类型定义
+    "types": [
+      "element-plus/global"
+    ]
+  },
+  //   references 属性作用是指定工程引用依赖。
+  // 在项目开发中，有时候我们为了方便将前端项目和后
+  // 端node项目放在同一个目录下开发，两个项目依赖同一个配置文件和通用文件，
+  // 但我们希望前后端项目进行灵活的分别打包，那么我们可以进行如下配置：
+  // "references": [
+  //   {
+  //     "path": "./tsconfig.node.json"
+  //   }
+  // ]
 }
