@@ -13,6 +13,7 @@ onMounted(async () => {
 
 <template>
   <div class="app">
+    <!-- 占位符 -->
     <RouterView />
   </div>
 </template>

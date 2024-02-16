@@ -8,6 +8,8 @@ import ElementPlus from 'element-plus'
 // import 'element-plus/dist/index.css'
 // 全局样式
 import './assets/main.scss'
+
+// pinia的状态调试工具
 import Colada, { PiniaColadaPlugin } from 'colada-plugin';
 
 const app = createApp(App)
