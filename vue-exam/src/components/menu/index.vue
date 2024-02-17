@@ -12,9 +12,14 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div>
-        我是菜单
-    </div>
+    <el-menu class="el-menu" mode="horizontal">
+        <el-menu-item index="1">Processing Center</el-menu-item>
+        <el-menu-item index="4">Orders</el-menu-item>
+    </el-menu>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.el-menu {
+    border-radius: 10px;
+}
+</style>
