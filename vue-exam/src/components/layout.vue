@@ -20,11 +20,14 @@ onMounted(async () => {
       <Header />
     </div>
 
-    <div>
+    <div class="content_wrap">
       <div className="nav_wrap">
         <Menu />
       </div>
-      <RouterView />
+      <div class="page_wrap">
+        <RouterView />
+      </div>
+
     </div>
   </div>
 </template>
