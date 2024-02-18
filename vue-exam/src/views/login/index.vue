@@ -4,12 +4,21 @@ import login_desc from './assets/login_desc.png'
 import login_logo from './assets/login_logo.png'
 import login_title_cn from './assets/login_title_cn.png'
 import login_title_en from './assets/login_title_en.png'
+import axios from 'axios';
+import { loginPost } from '../../utils/request';
+
+// 这个地址会变成，基于项目的相对路径，相对package.json所在的根目录
+console.log('login_desc', login_desc)
 
 const form = reactive({
   phone: '',
   code: ''
 })
 
+onMounted(async () => {
+  // 获取用户信息
+})
+// 这是可响应的对象
 const timer_ob = reactive({
   count: 60,
   show: false
@@ -32,13 +41,6 @@ function get_code() {
   }, 1000)
 }
 
-onBeforeMount(() => {
-
-})
-
-onMounted(async () => {
-
-})
 </script>
 
 <template>
