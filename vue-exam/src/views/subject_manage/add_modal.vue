@@ -44,13 +44,6 @@ const add_click = () => {
 
 const handleClose = (done: () => void) => {
     dialogVisible.value = false;
-    // ElMessageBox.confirm('Are you sure to close this dialog?')
-    //   .then(() => {
-    //     done()
-    //   })
-    //   .catch(() => {
-    //     // catch error
-    //   })
 }
 </script>
 <style scoped>  .btn {
