@@ -5,10 +5,12 @@ import login_logo from './assets/login_logo.png'
 import login_title_cn from './assets/login_title_cn.png'
 import login_title_en from './assets/login_title_en.png'
 import { loginPost } from '../../utils/request';
+import { useRouter } from 'vue-router';
+import { useCommonStore } from '../../stores/common';
 
 // 这个地址会变成，基于项目的相对路径，相对package.json所在的根目录
 console.log('login_desc', login_desc)
-
+const router = useRouter()
 const form = reactive({
   phone: '',
   code: ''
@@ -27,6 +29,9 @@ async function login() {
   // console.log(form.phone, form.code)
   const res = await loginPost(form)
 
+  if (!res.has_person_info) {
+    router.push('/person_info')
+  }
 }
 
 function get_code() {

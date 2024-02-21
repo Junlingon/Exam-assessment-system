@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { onMounted, onBeforeMount } from 'vue'
 import logo from './assets/logo.png'
+import avatar from './assets/avatar.png'
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
-onBeforeMount(() => {
+function logout() {
+    router.push('/login')
+}
 
-})
-
-onMounted(async () => {
-
-})
 </script>
 
 <template>
@@ -24,6 +23,7 @@ onMounted(async () => {
                         <el-icon class="icon">
                             <ChatDotRound class="icon" width="60" height="60" />
                         </el-icon>
+                        <div class="tag">0</div>
                     </div>
 
                 </template>
@@ -33,6 +33,20 @@ onMounted(async () => {
                     </div>
                 </template>
             </el-popover>
+
+            <el-dropdown>
+                <div class="avatar_wrap">
+                    <img :src="avatar" alt="九剑考试测评系统" />
+                </div>
+                <template #dropdown>
+                    <el-dropdown-menu>
+                        <el-dropdown-item>个人中心</el-dropdown-item>
+                        <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+
+            <p class="user">我是卧龙</p>
         </div>
     </div>
 </template>
@@ -47,22 +61,46 @@ onMounted(async () => {
     user-select: none;
 
     // header内元素高度
-    $height: 44px;
+    height: 44px;
 
-    .icon_wrap {
-        background: pink;
-        border-radius: 100%;
-        width: 60px;
-        height: 60px;
+    .right {
+        display: flex;
     }
 
-    .icon {
-        width: 100%;
-        height: 100%;
+    .icon_wrap {
+        // background: pink;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        margin-right: 20px;
+        position: relative;
+
+        .icon {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tag {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #fff;
+            border-radius: 100%;
+            background: red;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+    }
+
+    .user {
+        line-height: 44px;
+        padding-left: 10px;
     }
 
     .logo {
-        height: $height;
+        height: 44px;
         cursor: pointer;
 
         img {
@@ -70,40 +108,6 @@ onMounted(async () => {
         }
     }
 
-    .info {
-        display: flex;
-        column-gap: 24px;
-
-        .message {
-            background-image: url('./assets/message.png');
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: 40px;
-            cursor: pointer;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            column-gap: 8px;
-
-            .avatar {
-                cursor: pointer;
-                border: 2px solid #dddddd50;
-                box-shadow: 0 0 10px 0 #dddddd50;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
-            }
-
-            .name {
-                font-size: 14px;
-            }
-        }
-    }
 
 }
 </style>
