@@ -6,13 +6,13 @@ const tableData = [
     created: '2016-05-04',
     is_judge: false,
     subject_name: 'react课程',
-    user_name: '詹姆斯123'
+    user_name: '詹姆斯'
   },
   {
     created: '2016-05-04',
     is_judge: true,
     subject_name: 'vue课程',
-    user_name: '杜兰特12'
+    user_name: '杜兰特'
   },
 ]
 
