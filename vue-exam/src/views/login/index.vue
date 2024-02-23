@@ -150,6 +150,10 @@ function get_code() {
       .right_form {
         margin-top: 80px;
       }
+
+      a {
+        color: #EFF5FF;
+      }
     }
   }
 }
