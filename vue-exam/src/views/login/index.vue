@@ -9,12 +9,14 @@ import { useRouter } from 'vue-router';
 import { useCommonStore } from '../../stores/common';
 
 // 这个地址会变成，基于项目的相对路径，相对package.json所在的根目录
-console.log('login_desc', login_desc)
 const router = useRouter()
 const form = reactive({
   phone: '',
   code: ''
 })
+const common_store = useCommonStore()
+
+
 
 onMounted(async () => {
   // 获取用户信息
@@ -26,8 +28,12 @@ const timer_ob = reactive({
 })
 
 async function login() {
-  // console.log(form.phone, form.code)
   const res = await loginPost(form)
+
+  // 修改Pinia的数据
+  common_store.$patch({
+    userinfo: res
+  })
 
   if (!res.has_person_info) {
     router.push('/person_info')
@@ -150,7 +156,6 @@ function get_code() {
       .right_form {
         margin-top: 80px;
       }
-
     }
   }
 }

@@ -1,24 +1,31 @@
-import { ref, computed } from 'vue'
+import { reactive } from 'vue';
 import { defineStore } from 'pinia'
+import type { MenuData, UserInfo } from '../utils/request';
 
-export const useCommonStore = defineStore('common', () => {
-  const is_show_solution_tab = ref(false)
-  const is_show_solution_enter = ref(false)
+export const useCommonStore = defineStore('common', {
+  state: () => {
+    const userinfo: UserInfo = {
+      created: null,
+      name: '',            // 学生花名
+      vChat: '',          // 微信名字
+      phone: '',          // 手机
+      avatar: '',        // 头像
+      graduation_time: '',    // 毕业时间
+      money: 0,         // 现在薪资
+      role: 'student',        // 角色
+      _id: '',
+      has_person_info: false,  // 是否填写个人信息
+      topic_role: [],        // 课程权限列表
+      techStack: '',
+      edu: ''        // 技术栈
+    }
 
-  function change_show_solution_tab(flag: boolean) {
-    is_show_solution_tab.value = flag
-  }
+    const menus: MenuData[] = []
 
-  const show_solution_tab_index = ref(0)
-
-  function change_solution_tab_index(index: number) {
-    show_solution_tab_index.value = index
-  }
-  return {
-    is_show_solution_enter,
-    is_show_solution_tab,
-    change_show_solution_tab,
-    show_solution_tab_index,
-    change_solution_tab_index
+    console.log('@@@@@初始化')
+    return {
+      userinfo,
+      menus
+    }
   }
 })
