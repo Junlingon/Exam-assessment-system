@@ -1,6 +1,6 @@
 import COS from 'cos-js-sdk-v5'
 
-export const upload_imgs = function(files: any[]) {
+export const upload_imgs = function (files: any[]) {
     let cos = new COS({
         SecretId: 'AKIDuhEVUBumVwjGB0py70ZrskNirjKeRUzF',
         SecretKey: '73j7JEuITRGo54la8QTdXGhJgphH1Ugm',
@@ -11,7 +11,7 @@ export const upload_imgs = function(files: any[]) {
             const file_name = item.name
             const ramdom = Math.random().toString(36).slice(-8);
             const result_file_name = `topic/${ramdom}_${file_name}`
-    
+
             return {
                 Bucket: 'exam-project-1255639690', /* 填写自己的 bucket，必须字段 */
                 Region: 'ap-nanjing',  /* 存储桶所在地域，必须字段 */
@@ -43,10 +43,10 @@ export const upload_imgs = function(files: any[]) {
 }
 
 export const getImgUrl = (url: string | undefined) => {
-	if (!url) return
-	if (url.startsWith('http://') || url.startsWith('https://')) {
-		return url
-	} else {
-		return `https://${url}`
-	}
+    if (!url) return
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url
+    } else {
+        return `https://${url}`
+    }
 }
