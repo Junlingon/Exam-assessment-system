@@ -151,9 +151,6 @@ function get_code() {
         margin-top: 80px;
       }
 
-      a {
-        color: #EFF5FF;
-      }
     }
   }
 }
