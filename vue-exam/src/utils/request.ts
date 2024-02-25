@@ -21,16 +21,10 @@ export type ResData<T = any> = {
 
 type AxiosResData<T = any> = AxiosRes<ResData<T>>
 
-export type Role = 'student' | 'admin' | 'super_admin'
-
-export enum RoleData  {
-    student = 'student',
-    admin = 'admin',
-    super_admin = 'super_admin'
-}
+type Role = 'student' | 'admin' | 'super_admin'
 
 export type UserInfo = {
-    created: Date | null     // 时间
+    created: Date     // 时间
     name: string            // 学生花名
     vChat: string          // 微信名字
     phone: string          // 手机
@@ -41,8 +35,7 @@ export type UserInfo = {
     _id: string,
     has_person_info: boolean,  // 是否填写个人信息
     topic_role: [],        // 课程权限列表
-    techStack: string,      // 技术栈
-    edu: string
+    techStack: string        // 技术栈
 }
 
 export type MenuData = {
@@ -234,35 +227,10 @@ export function getTopic2List(suject2_id: string) {
     })
 }
 
-// 修改题目
-export function patchTopic(topic_id: string, data: any) {
-    return new Promise(async (resolve, rejects) => {
-        const res: AxiosResData = await axios.patch(`/api/topic/${topic_id}`, data)
-        resolve(res.data.data)
-    })
-}
-
-// 新增题目
-export function addTopic(data: any) {
-    return new Promise(async (resolve, rejects) => {
-        const res: AxiosResData = await axios.post(`/api/topic`, data)
-        resolve(res.data.data)
-    })
-}
-
-// 删除题目
-export function deleteTopic(id: string) {
-    return new Promise(async (resolve, rejects) => {
-        const res: AxiosResData = await axios.delete(`/api/topic/${id}`)
-        resolve(res.data.data)
-    })
-}
-
 
 // 获取exam考题历史记录 获取所有考卷 （学生 管理员）
-// body是查询参数
-export function getExamHistory(body: any = {}) {
-    return new Promise<ResData<ExamData[]>>(async (resolve, rejects) => {
+export function getExamHistory(body: any) {
+    return new Promise<ResData>(async (resolve, rejects) => {
         const res: AxiosResData<ExamData[]> = await axios.post(`/api/exam`, body)
         resolve(res.data)
     })
