@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { onMounted, onBeforeMount } from 'vue'
+import { getUserInfoRequest } from './utils/request';
+import { useCommonStore } from './stores/common';
 
-onBeforeMount(() => {
+const common_store = useCommonStore()
 
+onBeforeMount(async () => {
+  const res = await getUserInfoRequest()
+  common_store.$patch({
+    userinfo: res
+  })
 })
 
 onMounted(async () => {

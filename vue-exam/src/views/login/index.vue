@@ -4,7 +4,7 @@ import login_desc from './assets/login_desc.png'
 import login_logo from './assets/login_logo.png'
 import login_title_cn from './assets/login_title_cn.png'
 import login_title_en from './assets/login_title_en.png'
-import { loginPost } from '../../utils/request';
+import { loginPost, RoleData } from '../../utils/request';
 import { useRouter } from 'vue-router';
 import { useCommonStore } from '../../stores/common';
 
@@ -35,9 +35,18 @@ async function login() {
     userinfo: res
   })
 
+  // 没有填写用户信息
   if (!res.has_person_info) {
     router.push('/person_info')
+  } else {
+
+    if (res.role === RoleData.student) {
+      router.push('/exam_select')
+    }
   }
+
+  // 不同的角色权限  进入的页面不一样   student admin super_admin
+
 }
 
 function get_code() {
@@ -99,9 +108,7 @@ function get_code() {
 </template>
 
 <style scoped lang="scss">
-.input {
-  margin-bottom: 20px;
-}
+.input {}
 
 .btn {
   width: 100%;
@@ -157,6 +164,14 @@ function get_code() {
         margin-top: 80px;
       }
     }
+  }
+}
+</style>
+
+<style lang="scss">
+.login_container {
+  .el-input__inner {
+    color: #fff;
   }
 }
 </style>
