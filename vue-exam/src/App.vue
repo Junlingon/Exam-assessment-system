@@ -12,7 +12,7 @@ onBeforeMount(async () => {
     userinfo: res
   })
 })
-async onAfterMount(async () => { })
+
 onMounted(async () => {
 
 })
