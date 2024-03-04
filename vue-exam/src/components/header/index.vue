@@ -2,17 +2,30 @@
 import logo from './assets/logo.png'
 import avatar from './assets/avatar.png'
 import { useRouter } from 'vue-router';
+import { useCommonStore } from '../../stores/common';
+import { RoleData } from '../../utils/request';
 const router = useRouter()
+const common_store = useCommonStore()
 
 function logout() {
     router.push('/login')
+}
+
+function person_click() {
+    router.push('/person_info')
+}
+
+function logo_click() {
+    if (common_store.userinfo.role === RoleData.student) {
+        router.push('/exam_select')
+    }
 }
 
 </script>
 
 <template>
     <div class="wrap">
-        <div className="logo">
+        <div className="logo" @click="logo_click">
             <img :src="logo" alt="九剑考试测评系统" />
         </div>
         <div class="right">
@@ -40,7 +53,7 @@ function logout() {
                 </div>
                 <template #dropdown>
                     <el-dropdown-menu>
-                        <el-dropdown-item>个人中心</el-dropdown-item>
+                        <el-dropdown-item @click="person_click">个人中心</el-dropdown-item>
                         <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
