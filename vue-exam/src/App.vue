@@ -5,7 +5,7 @@ import { getUserInfoRequest } from './utils/request';
 import { useCommonStore } from './stores/common';
 
 const common_store = useCommonStore()
-//add the
+
 onBeforeMount(async () => {
   const res = await getUserInfoRequest()
   common_store.$patch({
