@@ -41,7 +41,8 @@ export type UserInfo = {
     _id: string,
     has_person_info: boolean,  // 是否填写个人信息
     topic_role: [],        // 课程权限列表
-    techStack: string        // 技术栈
+    techStack: string,      // 技术栈
+    edu: string
 }
 
 export type MenuData = {

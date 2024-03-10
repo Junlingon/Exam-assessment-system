@@ -3,9 +3,13 @@ import { onMounted, onBeforeMount, reactive } from 'vue';
 import Upload from './upload.vue'
 import { useCommonStore } from '../../stores/common';
 import { userInfoPatch } from '../../utils/request';
+import router_role_push from '../../config';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus'
 
 const common_store = useCommonStore()
 const userinfo = common_store.userinfo
+const router = useRouter()
 
 type initUserType = {
   name: string            // 学生花名
@@ -28,7 +32,6 @@ onMounted(async () => {
 })
 
 function img_change(url: string) {
-  console.log('图片地址', url)
   userinfo.avatar = url
 }
 
@@ -43,6 +46,15 @@ async function submit_userinfo() {
     techStack: userinfo.techStack
   }
   const res = await userInfoPatch(userinfo._id, form)
+  ElMessage.success('修改成功！')
+  const router_role_push: { [key: string]: string } = {
+    student: 'student',
+    admin: 'admin',
+    super_admin: 'super_admin'
+  };
+
+  router.push(router_role_push[userinfo.role]);
+  // router_role_push(userinfo.role)
 }
 
 </script>
@@ -76,7 +88,7 @@ async function submit_userinfo() {
         <el-input size="large" class="input" v-model="userinfo.vChat" placeholder="请输入vchat" />
       </el-form-item>
       <el-button size="large" class="btn" type="primary" @click="submit_userinfo">{{ userinfo.has_person_info ? '修改信息' :
-        '提交信息' }}</el-button>
+      '提交信息' }}</el-button>
     </el-form>
   </div>
 </template>

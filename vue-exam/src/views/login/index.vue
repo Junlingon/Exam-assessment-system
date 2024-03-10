@@ -7,6 +7,8 @@ import login_title_en from './assets/login_title_en.png'
 import { loginPost, RoleData } from '../../utils/request';
 import { useRouter } from 'vue-router';
 import { useCommonStore } from '../../stores/common';
+import router_role_push from '../../config';
+
 
 // 这个地址会变成，基于项目的相对路径，相对package.json所在的根目录
 const router = useRouter()
@@ -39,10 +41,7 @@ async function login() {
   if (!res.has_person_info) {
     router.push('/person_info')
   } else {
-
-    if (res.role === RoleData.student) {
-      router.push('/exam_select')
-    }
+    router.push(router_role_push[res.role])
   }
 
   // 不同的角色权限  进入的页面不一样   student admin super_admin
