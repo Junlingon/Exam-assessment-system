@@ -27,6 +27,7 @@ onMounted(async () => {
 function item_click(item: any) {
     console.log('item', item)
 }
+
 </script>
 
 <template>

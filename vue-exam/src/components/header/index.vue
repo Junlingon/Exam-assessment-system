@@ -3,11 +3,12 @@ import logo from './assets/logo.png'
 import avatar from './assets/avatar.png'
 import { useRouter } from 'vue-router';
 import { useCommonStore } from '../../stores/common';
-import { RoleData } from '../../utils/request';
+import { RoleData, logoutRequest } from '../../utils/request';
 const router = useRouter()
 const common_store = useCommonStore()
 
-function logout() {
+async function logout() {
+    await logoutRequest()
     router.push('/login')
 }
 
