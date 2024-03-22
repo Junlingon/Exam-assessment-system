@@ -1,28 +1,60 @@
 <script setup lang="ts">
-import { onMounted, onBeforeMount, ref } from 'vue'
-import { getTopic2List } from '../../utils/request';
+import { onMounted, onBeforeMount, ref, watch } from 'vue';
+import { getTopic2List, examPost } from '../../utils/request';
 import type { TopicData } from '../../utils/request'
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useSubjectStore } from '../../stores/subject';
+import TopicCp from '@/components/topic.vue'
+
 
 const route = useRoute()
+const router = useRouter()
 const subject_store = useSubjectStore()
-const current_topic_id = ref('')
+
+const can_submit = ref(false)
+
+watch(() => subject_store.topic_list.map((item) => {
+  return item
+}), (value) => {
+
+  can_submit.value = value.every((item) => {
+    console.log('item', item)
+    return item.answer
+  })
+}, {
+  deep: true
+})
+
 
 onBeforeMount(() => {
 
 })
 
 onMounted(async () => {
-  // console.log('route', route.params.exam_id)
   const topic_list = await getTopic2List(route.params.exam_id as string)
   subject_store.topic_list = topic_list
-  current_topic_id.value = topic_list[0]._id
+  subject_store.current_topic_id = topic_list[0]._id
 })
+
+function submit_answer(topic: TopicData) {
+  subject_store.topic_list.forEach((item: TopicData) => {
+    if (item._id === subject_store.current_topic_id) {
+      item.answer = topic.answer
+    }
+  })
+}
 
 function item_click(item: TopicData) {
   console.log(item)
-  current_topic_id.value = item._id
+  subject_store.current_topic_id = item._id
+}
+
+async function submit_exam() {
+  await examPost({
+    topic_list: subject_store.topic_list,
+    two_id: route.params.exam_id as string
+  })
+  router.push('/exam_history')
 }
 </script>
 
@@ -34,17 +66,20 @@ function item_click(item: TopicData) {
         <div class="exam_left_content">
           <div v-for="item, index in subject_store.topic_list" class="questiontab" @click="item_click(item)">
             <div class="question" :class="{
-            alreadyselect: current_topic_id === item._id
+            alreadyselect: subject_store.current_topic_id === item._id
           }">
               {{ index + 1 }} {{ item.title }}
             </div>
-            <div class="circle"></div>
+            <div class="circle" :class="{
+            alreadykeep: item.answer
+          }"></div>
           </div>
         </div>
       </div>
 
       <div class="exam_right">
-        <el-button type="primary">保存作答</el-button>
+        <TopicCp type="exam" :topic="subject_store.current_topic" :answer_cb="submit_answer" />
+        <el-button @click="submit_exam" :disabled="!can_submit" type="primary">提交考试</el-button>
       </div>
     </div>
   </div>
@@ -280,3 +315,4 @@ function item_click(item: TopicData) {
   color: #9FA3A7;
 }
 </style>
+../../stores/subject

@@ -5,6 +5,7 @@ import type { MenuData } from '../utils/request';
 export const useCommonStore = defineStore('common', {
   state: () => {
     const userinfo = {
+      created: null,
       name: '',            // 学生花名
       vChat: '',          // 微信名字
       phone: '',          // 手机
