@@ -30,7 +30,7 @@ export enum RoleData {
 }
 
 export type UserInfo = {
-    created: Date     // 时间
+    created: Date | null     // 时间
     name: string            // 学生花名
     vChat: string          // 微信名字
     phone: string          // 手机
