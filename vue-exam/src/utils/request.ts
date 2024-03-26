@@ -250,9 +250,6 @@ export function getExamByIdRequest(exam_id: string) {
     })
 }
 
-
-// 试卷管理
-
 // 批阅试卷
 export type CorretExamBody = {
     topic_list: TopicData[]
