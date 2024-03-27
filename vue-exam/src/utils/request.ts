@@ -260,7 +260,7 @@ export function corretExamPost(exam_id: string, body: CorretExamBody) {
         resolve(res.data.data)
     })
 }
-////////////////////////////////
+
 // 试卷提交
 export type ExamPostBody = {
     topic_list: TopicData[],
