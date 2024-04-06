@@ -2,7 +2,6 @@
 import { defineStore } from 'pinia'
 import type { SubjectData, TopicData } from '../utils/request';
 
-//
 // 课程管理 题目管理 store
 export const useSubjectStore = defineStore('subject', {
     state: () => {
