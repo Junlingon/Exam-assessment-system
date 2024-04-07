@@ -8,11 +8,6 @@ const route = useRoute()
 const common_store = useCommonStore()
 
 const current_path = route.path
-console.log('route', route)
-
-onBeforeMount(() => {
-
-})
 
 onMounted(async () => {
 
