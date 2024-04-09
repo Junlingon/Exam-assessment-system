@@ -4,7 +4,7 @@ import { onMounted, onBeforeMount } from 'vue'
 import { getUserInfoRequest } from './utils/request';
 import { useCommonStore } from './stores/common';
 import eventBus from './utils/event';
-
+//
 const common_store = useCommonStore()
 const router = useRouter()
 
