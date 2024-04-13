@@ -1,6 +1,7 @@
 
 import { defineStore } from 'pinia'
-import type { SubjectData, TopicData } from '../utils/request';
+import type { ExamData, SubjectData, TopicData } from '../utils/request';
+
 
 // 课程管理 题目管理 store
 export const useSubjectStore = defineStore('subject', {
@@ -8,10 +9,11 @@ export const useSubjectStore = defineStore('subject', {
         const subject_tree: SubjectData[] = []
         const topic_list: TopicData[] = []
         const current_topic_id = ''
+
         return {
             subject_tree,
             topic_list,
-            current_topic_id
+            current_topic_id,
         }
     },
     getters: {

@@ -10,10 +10,12 @@ const instance = axios.create({
 
 instance.interceptors.response.use(function (response) {
 
-    // console.log('response.status', response.status)
+    console.log('response.status @@@', response)
 
     if (response.status === 200) {
         if (response.data.code === 401) {
+            // 跳转到登录页
+            // 不建议在中间件中处理具体的业务逻辑  发布到组件中去处理
             EventBus.emit('global_not_login', response.data.msg)
         }
 

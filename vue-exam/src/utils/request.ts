@@ -236,7 +236,8 @@ export function getTopic2List(suject2_id: string) {
 
 
 // 获取exam考题历史记录 获取所有考卷 （学生 管理员）
-export function getExamHistory(body: any) {
+// body是查询参数
+export function getExamHistory(body: any = {}) {
     return new Promise<ResData<ExamData[]>>(async (resolve, rejects) => {
         const res: AxiosResData<ExamData[]> = await axios.post(`/api/exam`, body)
         resolve(res.data)
@@ -249,6 +250,9 @@ export function getExamByIdRequest(exam_id: string) {
         resolve(res.data.data)
     })
 }
+
+
+// 试卷管理
 
 // 批阅试卷
 export type CorretExamBody = {

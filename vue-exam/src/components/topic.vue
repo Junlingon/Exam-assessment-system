@@ -3,7 +3,7 @@ import { onMounted, onBeforeMount, ref, withDefaults, watch } from 'vue'
 import type { TopicData } from '../utils/request';
 
 type Iprops = { // 考试 批阅 查看
-    type: 'exam' | 'read' | 'corret' | ''
+    type: 'exam' | 'read' | 'corret'
     topic: TopicData
     pass_cb?: any,
     no_pass_cb?: any,
@@ -22,18 +22,8 @@ watch(() => props.topic.answer, (value) => {
     answer.value = value
 })
 
-onBeforeMount(() => {
-
-})
-
-onMounted(async () => {
-
-})
-
 // 提交答案
 function save_click() {
-
-    console.log('props.answer_cb', props.answer_cb)
 
     if (answer.value.trim()) {
         props.answer_cb({

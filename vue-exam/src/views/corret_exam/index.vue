@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getExamHistory } from '@/utils/request';
 import { onMounted, onBeforeMount } from 'vue'
 
 
@@ -6,9 +7,7 @@ onBeforeMount(() => {
 
 })
 
-onMounted(async () => {
 
-})
 </script>
 
 <template>
