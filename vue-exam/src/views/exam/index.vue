@@ -6,8 +6,10 @@ import { useRoute, useRouter } from 'vue-router';
 import { useSubjectStore } from '../../stores/subject';
 import TopicCp from '@/components/topic.vue'
 
-
+// 路由信息  信息
 const route = useRoute()
+
+// 跳转 动作
 const router = useRouter()
 const subject_store = useSubjectStore()
 
@@ -31,8 +33,10 @@ onBeforeMount(() => {
 })
 
 onMounted(async () => {
+  console.log('route', route)
   const topic_list = await getTopic2List(route.params.exam_id as string)
   subject_store.topic_list = topic_list
+
   subject_store.current_topic_id = topic_list[0]._id
 })
 
