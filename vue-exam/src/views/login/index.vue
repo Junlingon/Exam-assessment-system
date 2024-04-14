@@ -170,7 +170,7 @@ function get_code() {
 <style lang="scss">
 .login_container {
   .el-input__inner {
-    color: #fff;
+    // color: #fff;
   }
 }
 </style>
