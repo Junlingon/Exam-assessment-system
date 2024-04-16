@@ -166,11 +166,3 @@ function get_code() {
   }
 }
 </style>
-
-<style lang="scss">
-.login_container {
-  .el-input__inner {
-    // color: #fff;
-  }
-}
-</style>
