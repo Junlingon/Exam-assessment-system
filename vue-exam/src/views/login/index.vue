@@ -36,7 +36,7 @@ async function login() {
   common_store.$patch({
     userinfo: res
   })
-  //
+
   // 没有填写用户信息
   if (!res.has_person_info) {
     router.push('/person_info')
