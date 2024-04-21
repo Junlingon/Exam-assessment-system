@@ -234,6 +234,30 @@ export function getTopic2List(suject2_id: string) {
     })
 }
 
+// 修改题目
+export function patchTopic(topic_id: string, data: any) {
+    return new Promise(async (resolve, rejects) => {
+        const res: AxiosResData = await axios.patch(`/api/topic/${topic_id}`, data)
+        resolve(res.data.data)
+    })
+}
+
+// 新增题目
+export function addTopic(data: any) {
+    return new Promise(async (resolve, rejects) => {
+        const res: AxiosResData = await axios.post(`/api/topic`, data)
+        resolve(res.data.data)
+    })
+}
+
+// 删除题目
+export function deleteTopic(id: string) {
+    return new Promise(async (resolve, rejects) => {
+        const res: AxiosResData = await axios.delete(`/api/topic/${id}`)
+        resolve(res.data.data)
+    })
+}
+
 
 // 获取exam考题历史记录 获取所有考卷 （学生 管理员）
 // body是查询参数
