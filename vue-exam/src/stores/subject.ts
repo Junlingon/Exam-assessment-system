@@ -10,13 +10,15 @@ export const useSubjectStore = defineStore('subject', {
         const subject_tree: SubjectData[] = []
         const topic_list: TopicData[] = []
         const current_topic_id = ''
-        const cuttent_subject2_id = ''
+        const current_subject2_id = ''
+        const subject_one_list: any[] = []
 
         return {
             subject_tree,
             topic_list,
             current_topic_id,
-            cuttent_subject2_id
+            current_subject2_id,
+            subject_one_list
         }
     },
     getters: {
@@ -30,7 +32,7 @@ export const useSubjectStore = defineStore('subject', {
 
             state.subject_tree.forEach((item) => {
                 item.children.forEach((item2) => {
-                    if (item2.value === state.cuttent_subject2_id) {
+                    if (item2.value === state.current_subject2_id) {
                         name = item2.title
                     }
                 })

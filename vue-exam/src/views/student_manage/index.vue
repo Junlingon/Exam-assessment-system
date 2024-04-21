@@ -1,47 +1,35 @@
-<script setup lang="ts">
-import Search from './search.vue'
+<script lang="ts" setup>
+import Modal from './modal.vue'
+import { onMounted } from 'vue';
+import { getSubjectTree } from '../../utils/request';
+import { useSubjectStore } from '../../stores/subject';
 
-const tableData = [
-  {
-    created: '2016-05-04',
-    is_judge: false,
-    subject_name: 'react课程',
-    user_name: '詹姆斯'
-  },
-  {
-    created: '2016-05-04',
-    is_judge: true,
-    subject_name: 'vue课程',
-    user_name: '杜兰特'
-  },
-]
+const subject_store = useSubjectStore()
 
-function read_click(row: any) {
-
-}
-
-function corret_click(row: any) {
-
-}
+onMounted(async () => {
+  const res = await getSubjectTree()
+  subject_store.subject_tree = res
+  console.log('')
+})
 
 </script>
-
 <template>
   <div>
-    <Search />
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="subject_name" label="试卷名称" />
-      <el-table-column prop="user_name" label="考试时间" />
+    <div class="top">
+      <Modal />
+    </div>
+    <el-table :data="subject_store.subject_tree" style="width: 100%; margin-bottom: 20px" row-key="id" border
+      default-expand-all>
+      <el-table-column prop="value" label="分类" sortable />
+      <el-table-column prop="title" label="课程" sortable />
     </el-table>
+
   </div>
 </template>
 
-<style scoped lang="scss">
-.can_read {
-  cursor: pointer;
-}
 
-.red {
-  color: red;
+<style scoped lang="scss">
+.btn {
+  margin-bottom: 20px;
 }
 </style>

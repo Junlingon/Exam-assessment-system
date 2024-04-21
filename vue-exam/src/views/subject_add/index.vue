@@ -21,17 +21,18 @@ const form = reactive({
 onMounted(async () => {
   const res = await getSubjectTree()
   subejctStore.subject_tree = res
-  subejctStore.cuttent_subject2_id = res[0].children[0].value
+  subejctStore.current_subject2_id = res[0].children[0].value
 })
 
-watch(() => subejctStore.cuttent_subject2_id, async (val: string) => {
+watch(() => subejctStore.current_subject2_id, async (val: string) => {
   const res = await getTopic2List(val)
   subejctStore.topic_list = res
 })
 
 
 function option_change(val: any) {
-  img_url.value = val
+  // img_url.value = val
+  console.log('val', val)
 }
 
 function topic_item_click(item: TopicData) {
@@ -39,18 +40,26 @@ function topic_item_click(item: TopicData) {
 }
 
 function img_upload(val: string) {
+  // ['https://url.com']
   subejctStore.current_topic.img = [val]
   img_url.value = val
 }
 
+// // {
+//   a:1,
+//   b:2,
+//   c:1
+// }
 async function save_edit_topic() {
+  // 分两种情况
   if (!img_url) {
     await patchTopic(subejctStore.current_topic_id, {
       title: subejctStore.current_topic.title,
       dec: subejctStore.current_topic.dec,
-      img: subejctStore.current_topic.img
+      // img: subejctStore.current_topic.img
     })
   } else {
+    // 有新图片
     await patchTopic(subejctStore.current_topic_id, {
       title: subejctStore.current_topic.title,
       dec: subejctStore.current_topic.dec,
@@ -68,13 +77,13 @@ async function add_topic() {
     title: subejctStore.current_topic.title,
     dec: subejctStore.current_topic.dec,
     img: [img_url.value],
-    two_id: subejctStore.cuttent_subject2_id
+    two_id: subejctStore.current_subject2_id
   })
 }
 
 async function delete_topic(id: string) {
   await deleteTopic(id)
-  const res = await getTopic2List(subejctStore.cuttent_subject2_id)
+  const res = await getTopic2List(subejctStore.current_subject2_id)
   subejctStore.topic_list = res
 }
 
@@ -84,7 +93,7 @@ async function delete_topic(id: string) {
   <div class="wrap">
     <div class="top">
       <p>{{ subejctStore.current_subject_title }}</p>
-      <el-select v-model="subejctStore.cuttent_subject2_id" @change="option_change" placeholder="Select">
+      <el-select v-model="subejctStore.current_subject2_id" @change="option_change" placeholder="Select">
         <el-option-group v-for="group in subejctStore.subject_tree" :key="group.value" :label="group.title">
           <el-option v-for="item in group.children" :key="item.value" :label="item.title" :value="item.value" />
         </el-option-group>
@@ -109,7 +118,7 @@ async function delete_topic(id: string) {
         <div class="title">
           <div class="text">题目详情</div>
         </div>
-        <el-form :model="form" label-width="40px">
+        <el-form label-width="40px">
           <el-form-item label="题目">
             <el-input class="input" v-model="subejctStore.current_topic.title" placeholder="" />
           </el-form-item>
